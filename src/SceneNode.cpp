@@ -23,6 +23,11 @@ void SceneNode::onCommand(const Command &command, sf::Time delta)
     }
 }
 
+Category SceneNode::getCategory() const
+{
+    return Category::Scene;
+}
+
 void SceneNode::attachChild(std::shared_ptr<SceneNode> child)
 {
     if (! child)
@@ -57,11 +62,6 @@ std::shared_ptr<SceneNode> SceneNode::detachChild(const SceneNode &node)
     m_children.erase(found);
 
     return detached;
-}
-
-Category SceneNode::getCategory() const
-{
-    return Category::Scene;
 }
 
 sf::Transform SceneNode::getWorldTransform()
