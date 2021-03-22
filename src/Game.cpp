@@ -38,7 +38,8 @@ void Game::run()
     {
         processEvents();
         // Use fixed time steps for game engine processing
-        lastUpdate += clock.restart();
+        sf::Time elasped = clock.restart();
+        lastUpdate += elasped;
         while(lastUpdate > TIME_PER_FRAME)
         {
             lastUpdate -= TIME_PER_FRAME;
@@ -47,7 +48,7 @@ void Game::run()
             if (! m_paused)
                 update(TIME_PER_FRAME);
         }
-        updateStatistics(lastUpdate);
+        updateStatistics(elasped);
 
         render();
     }
