@@ -10,6 +10,7 @@ include_directories(
 
 add_executable(${EXECUTABLE_NAME}
     main.cpp
+    CommandQueue.cpp
     Entity.cpp
     Game.cpp
     MainWindow.cpp

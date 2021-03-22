@@ -5,6 +5,7 @@
 #include "Textures.hpp"
 
 #include <SFML/Graphics.hpp>
+#include <cstddef>
 
 class Game
 {
@@ -16,6 +17,7 @@ public:
 
 private:
     void update(sf::Time delta);
+    void updateStatistics(sf::Time delta);
     void render();
     void processEvents();
     void handleEvent(sf::Event& event);
@@ -27,4 +29,11 @@ private:
     World m_world;
 
     bool m_paused;
+
+    // profiling shit
+    sf::Font m_statsFont;
+    sf::Text m_statsText;
+    sf::Time m_statsUpdateTime;
+    // NOTE: not atomic, really just a frame counter that is queried each second
+    std::size_t m_statsFPS;
 };

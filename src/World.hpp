@@ -16,7 +16,7 @@ public:
     void update(sf::Time delta);
     void draw();
 
-    CommandQueue& getCommandQueue() const;
+    CommandQueue& getCommandQueue();
 private:
     void loadTextures();
     void buildScene();

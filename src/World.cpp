@@ -1,4 +1,5 @@
 #include "World.hpp"
+#include "CommandQueue.hpp"
 #include "PlayerAircraft.hpp"
 #include "Textures.hpp"
 #include "SpriteNode.hpp"
@@ -38,14 +39,12 @@ void World::update(sf::Time delta)
     // Scroll the view upwards
     m_view.move({ 0.f, -m_scrollSpeed * delta.asSeconds() });
 
-
-    // FIXME remove:
-
-    const int navSpeed = 1000;
+    // HACk: Camera movement hack
+    const int hackSpeed = 1000;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        m_view.move({ 0.f, -navSpeed * delta.asSeconds() });
+        m_view.move({ 0.f, -hackSpeed * delta.asSeconds() });
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        m_view.move({ 0.f, navSpeed * delta.asSeconds() });
+        m_view.move({ 0.f, hackSpeed * delta.asSeconds() });
 
     //TODO bring player with us
     
@@ -62,6 +61,11 @@ void World::draw()
 {
     m_window.setView(m_view);
     m_window.draw(m_sceneGraph);
+}
+
+CommandQueue& World::getCommandQueue()
+{
+    return m_commandQueue;
 }
 
 void World::loadTextures()
